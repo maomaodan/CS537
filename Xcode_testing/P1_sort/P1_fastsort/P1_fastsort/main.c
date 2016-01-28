@@ -4,12 +4,19 @@
 #include <sys/stat.h>
 
 
+
+
+
+struct sentence{
+    char* words[64];
+    char* to_sort;
+};
 //compare method
 int my_compare (const void *k1, const void *k2)
 {
-    char * w1 = (char*) k1;
-    char * w2 = (char*) k1;
-    return strcmp(w1,w2);
+    struct sentence * w1 = *(struct sentence**) k1;
+    struct sentence * w2 = *(struct sentence**) k2;
+    return strcmp(w1->to_sort,w2->to_sort);
 }
 
 
@@ -19,20 +26,35 @@ int main(int argc, char*argv[])
     char* input_file;
     int col;
     int maxLineLength = 128;
-    int i;
+    int i,j;
     
     if (argc == 2)
     {
         input_file = argv[1];
-        col = 1;
+        col = 0;
         printf("%s\n",input_file);
         
     }
     else if (argc == 3)
     {
-        if (argv[1][0] !='-')
-            col = atoi(argv[1]);
-        input_file = argv[2];
+        if (argv[1][0] =='-')
+        {
+            
+            if ((col = atoi(argv[1]+1))==0)
+            {
+                fprintf(stderr, "Error: Bad commad line parameters\n");
+                exit(1);
+            }
+            col--;
+            
+            input_file = argv[2];
+        }
+        else
+        {
+            fprintf(stderr, "Error: Bad commad line parameters\n");
+            exit(1);
+        }
+        
         
     }
     else
@@ -54,12 +76,11 @@ int main(int argc, char*argv[])
     {
         exit(1);
     }
-    //printf("%lld\n",status.st_size);
-    
-    //buffer
+       //buffer
     char *buffer[1024];
     //= (char*) malloc(1024*128*sizeof(char));
-    char *cmp_buffer[1024][128];//= (char**) malloc(status.st_size);
+    
+    //char *cmp_buffer[1024][64];//= (char**) malloc(status.st_size);
 
     
     //read from the file
@@ -73,19 +94,67 @@ int main(int argc, char*argv[])
         lineCount++;
     }
     
-    //printf("%d\n",lineCount);
-    for (i = 0; i < lineCount; i++)
+    char *cpy_buffer [1024];
+    for (i = 0; i<lineCount;i++)
     {
-        cmp_buffer[i] = malloc(sizeof(char)*128);
-        strcpy(cmp_buffer[i], strtok(buffer[i]," "));
-
+        cpy_buffer[i]= malloc(sizeof(char)*128);
+        strcpy(cpy_buffer[i], buffer[i]);
     }
     
+    //printf("%d\n",lineCount);
+    struct sentence * sent_buf[1024];
+    for (i = 0; i < lineCount; i++)
+    {
+        sent_buf[i] = malloc(sizeof(struct sentence));
+        j = 0;
+        
+        sent_buf[i]->to_sort = malloc(sizeof(char)*64);
+
+        char *token;
+        token = strtok(cpy_buffer[i]," ");
+        //divide up lines of inputs
+        while (token !=NULL)
+        {
+            sent_buf[i]->words[j] = malloc(sizeof(char)*128);
+            strcpy(sent_buf[i]->words[j], token);
+            
+            //cmp_buffer[i][j] = malloc(sizeof(char)*64);
+            //cmp_buffer[i][j] = token;
+            token  = strtok(NULL," ");
+            j++;
+        }
+        sent_buf[i]->to_sort = sent_buf[i]->words[col];
+        
+        
+    }
+    /*
+    char*  cmp[1024];
+    for (i = 0; i < lineCount; i++)
+    {
+        cmp[i] = malloc(sizeof(char)*128);
+        strcpy(cmp[i],cmp_buffer[i][col]);
+    }
+    */
     
-    
+    qsort(&sent_buf,lineCount,sizeof(struct sentence*),my_compare);
     // qsort ()
      //void qsort(void *base, size_t nmemb, size_t size,
      //                  int(*compar)(const void *, const void *));
+    for (i = 0; i < lineCount;i++)
+    {
+        j = 0;
+        while (sent_buf[i]->words[j] != '\0')
+        {
+            if (j==0)
+            {
+                printf("%s",sent_buf[i]->words[j]);
+            }else
+            {
+                printf(" %s",sent_buf[i]->words[j]);
+            }
+            j++;
+        }
+    }
     
-    return 0;
+    exit(0);
 }
