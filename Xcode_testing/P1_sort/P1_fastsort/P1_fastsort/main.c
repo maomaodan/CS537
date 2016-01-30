@@ -32,7 +32,7 @@ int main(int argc, char*argv[])
     {
         input_file = argv[1];
         col = 0;
-        printf("%s\n",input_file);
+//        printf("%s\n",input_file);
         
     }
     else if (argc == 3)
@@ -42,7 +42,7 @@ int main(int argc, char*argv[])
             
             if ((col = atoi(argv[1]+1))==0)
             {
-                fprintf(stderr, "Error: Bad commad line parameters\n");
+                fprintf(stderr, "Error: Bad command line parameters\n");
                 exit(1);
             }
             col--;
@@ -51,7 +51,7 @@ int main(int argc, char*argv[])
         }
         else
         {
-            fprintf(stderr, "Error: Bad commad line parameters\n");
+            fprintf(stderr, "Error: Bad command line parameters\n");
             exit(1);
         }
         
@@ -59,7 +59,7 @@ int main(int argc, char*argv[])
     }
     else
     {
-        fprintf(stderr, "Error: Bad commad line parameters\n");
+        fprintf(stderr, "Error: Bad command line parameters\n");
         exit(1);
     }
     
@@ -115,6 +115,11 @@ int main(int argc, char*argv[])
         //divide up lines of inputs
         while (token !=NULL)
         {
+            if (j >=128)
+            {
+                fprintf(stderr, "Line too long\n");
+                exit(1);
+            }
             sent_buf[i]->words[j] = malloc(sizeof(char)*128);
             strcpy(sent_buf[i]->words[j], token);
             
@@ -123,7 +128,26 @@ int main(int argc, char*argv[])
             token  = strtok(NULL," ");
             j++;
         }
-        sent_buf[i]->to_sort = sent_buf[i]->words[col];
+        if (sent_buf[i]->words[col]==NULL)
+        {
+            j =0;
+            while(sent_buf[i]->words[j]!=NULL)
+            {
+                j++;
+            }
+            if(j>0)
+            {
+            sent_buf[i]->to_sort = sent_buf[i]->words[j-1];
+            }
+            /*else
+            {
+                sent_buf[i]->to_sort = ;
+            }*/
+        }
+        else
+        {
+            sent_buf[i]->to_sort = sent_buf[i]->words[col];
+        }
         
         
     }
@@ -143,7 +167,7 @@ int main(int argc, char*argv[])
     for (i = 0; i < lineCount;i++)
     {
         j = 0;
-        while (sent_buf[i]->words[j] != '\0')
+        while (sent_buf[i]->words[j] != '\0'||sent_buf[i]->words[j] != NULL)
         {
             if (j==0)
             {
