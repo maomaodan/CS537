@@ -89,9 +89,16 @@ int main(int argc, char*argv[])
     
     while (fgets(currLine,maxLineLength,fp) != NULL)
     {
+        //printf("%c\n",*(currLine+126));
+        if (!(*(currLine+126)==0||*(currLine+126)=='\n'))
+        {
+            fprintf(stderr, "Line too long\n");
+            exit(1);
+        }
         buffer[lineCount] = malloc(sizeof(char)*128);
         strcpy (buffer[lineCount], currLine);
         lineCount++;
+        currLine = malloc(sizeof(char)*128);
     }
     
     char *cpy_buffer [1024];
