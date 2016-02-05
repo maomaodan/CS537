@@ -81,7 +81,7 @@ int main(int argc, char*argv[])
     //= (char*) malloc(1024*128*sizeof(char));
     
     //char *cmp_buffer[1024][64];//= (char**) malloc(status.st_size);
-
+    
     
     //read from the file
     int lineCount = 0;

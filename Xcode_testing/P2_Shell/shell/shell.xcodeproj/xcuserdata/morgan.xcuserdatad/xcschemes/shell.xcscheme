@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "905DC5931C53467900ED5F48"
-               BuildableName = "P1_fastsort"
-               BlueprintName = "P1_fastsort"
-               ReferencedContainer = "container:P1_fastsort.xcodeproj">
+               BlueprintIdentifier = "900E15C31C650EC2007F743D"
+               BuildableName = "shell"
+               BlueprintName = "shell"
+               ReferencedContainer = "container:shell.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "905DC5931C53467900ED5F48"
-            BuildableName = "P1_fastsort"
-            BlueprintName = "P1_fastsort"
-            ReferencedContainer = "container:P1_fastsort.xcodeproj">
+            BlueprintIdentifier = "900E15C31C650EC2007F743D"
+            BuildableName = "shell"
+            BlueprintName = "shell"
+            ReferencedContainer = "container:shell.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,22 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "905DC5931C53467900ED5F48"
-            BuildableName = "P1_fastsort"
-            BlueprintName = "P1_fastsort"
-            ReferencedContainer = "container:P1_fastsort.xcodeproj">
+            BlueprintIdentifier = "900E15C31C650EC2007F743D"
+            BuildableName = "shell"
+            BlueprintName = "shell"
+            ReferencedContainer = "container:shell.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-1000"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "my_test.txt"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -84,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "905DC5931C53467900ED5F48"
-            BuildableName = "P1_fastsort"
-            BlueprintName = "P1_fastsort"
-            ReferencedContainer = "container:P1_fastsort.xcodeproj">
+            BlueprintIdentifier = "900E15C31C650EC2007F743D"
+            BuildableName = "shell"
+            BlueprintName = "shell"
+            ReferencedContainer = "container:shell.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
