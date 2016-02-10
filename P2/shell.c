@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
         char* myargv[128];
         
         char* pathvar[128];
-        
+        pathvar[0] = "/bin/";
         char *token;
         
         token = strtok(argdup," ");
@@ -142,6 +142,10 @@ int main(int argc, char * argv[]) {
                     char* programArg[128];
                     
                     programArg[0] = malloc(sizeof(char)*(strlen(pathvar[i])+strlen(myargv[0]))+1);
+                    if (myargv[0][strlen(myargv[0])-1]=='\n')
+                    {
+                        myargv[0][strlen(myargv[0])-1]=0;
+                    }
                     
                     strcpy(programArg[0],pathvar[i]);
                     strcat(programArg[0],myargv[0]);
@@ -161,14 +165,18 @@ int main(int argc, char * argv[]) {
                         }
                         programArg[i+1] = NULL;
                         //before exec, change STDOUT
-                        close(STDOUT_FILENO);
-                        open("/Users/morgan/Desktop/file.stdout", O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
+                        //close(STDOUT_FILENO);
+                        //open("/Users/morgan/Desktop/file.stdout", O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
                         //open("/tmp/file.stdout",, O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
                         
                         //new process
                         
-                        
-                        execv(myargv[0],myargv);
+                        int suc;
+                        suc = execv(programArg[0],programArg);
+                        if (suc>=0)
+                        {
+                            break;
+                        }
                         printf("(only runs execv) failed!\n");
                         exit(1);
                         
@@ -176,12 +184,15 @@ int main(int argc, char * argv[]) {
                     else if (rc >0)
                     {   //parent
                         int cpid = (int) wait (NULL);
-                        printf("parent: child pid was %d\n",cpid);
+                        //printf("parent: child pid was %d\n",cpid);
                     }
                     else{
                         fprintf(stderr, "fail\n");
                     }
 
+                }
+                else{
+                    break;
                 }
             }
             /*
