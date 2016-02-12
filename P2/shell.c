@@ -15,16 +15,28 @@
 #include <stddef.h>
 
 int main(int argc, char * argv[]) {
+    
     //error message
     char error_message[30] = "An error has occurred\n";
     //write(STDERR_FILENO, error_message, strlen(error_message));
+    //initial path variables
+    int pathNum = 1;
+    char* pathvar[128];
+    pathvar[0] = malloc(128);
+    
+    pathvar[0] = "/bin/";
     
     
     while (1)
     {
+        int redir = 0;
         int i,j;
-        
-        printf("whoosh> ");
+        int myargc = 0;
+        int outfile,errfile;
+        char* outfilename = "";
+        char* errfilename = "";
+        //printf("whoosh> ");
+        write (STDOUT_FILENO, "whoosh> ", strlen("whoosh >"));
         //my input line arg
         char* input = malloc(sizeof(char)*128);
         fgets(input,128,stdin);
@@ -39,11 +51,11 @@ int main(int argc, char * argv[]) {
         
         char* myargv[128];
         
-        char* pathvar[128];
-        pathvar[0] = "/bin/";
+        
         char *token;
         
         token = strtok(argdup," ");
+        //myargc++;
         //divide up lines of inputs
         i = 0;
         j = 0;
@@ -54,6 +66,7 @@ int main(int argc, char * argv[]) {
             strcpy(myargv[i], token);
             token  = strtok(NULL," ");
             i++;
+            myargc++;
         }
         
         if (strcmp(myargv[0],"exit")==0||strcmp(myargv[0],"exit\n")==0)
@@ -112,129 +125,184 @@ int main(int argc, char * argv[]) {
         }
         else if (strcmp(myargv[0], "path")==0)
         {
+            pathNum = 0;
             j = 0;
-            for (i = 1;i<128;i++)
+            i = 1;
+            for (i = 1; i <= argc; i++)
             {
-                if (myargv[i]==0||myargv[i]==NULL)
+                if(myargv[i]!=NULL&&myargv[i]!=0)
                 {
-                    pathvar[i] = '\0';
-                    break;
-                }
-                else{
-                    if (myargv[i][strlen(myargv[i])-1]== '\n')
+                    
+                    if (strlen(myargv[i])>0)
                     {
-                        myargv[i][strlen(myargv[i])-1]=0;
+                        if (myargv[i][strlen(myargv[i])-1]== '\n')
+                        {
+                            myargv[i][strlen(myargv[i])-1]=0;
+                        }
                     }
                     pathvar[j] = malloc (sizeof(char)*128);
                     strcpy(pathvar[j],myargv[i]);
-                    //TODO: printf("%s\n",pathvar[j]);
+                    
+                    //printf("%s should not be here\n",pathvar[j]);
                     j++;
+                    i++;
+                    pathNum++;
+                    
+                }
+                else{
+                    break;
                 }
             }
             continue;
         }
-        else
+        else if (strcmp(myargv[0], "path\n")==0)
         {
-            for (i = 0; i < 128; i++)
+            pathvar[0] = "";
+        }
+        else    //other commands
+        {
+            //if empty line
+            if(myargc == 1&&strcmp(myargv[0],"\n")==0)
             {
-                if (pathvar[i]!=NULL)
+                continue;
+            }
+            //get program arguments, detect '>'
+            char* programArg[64];
+            i = 1;
+            for(i = 1; i <myargc; i++)
+            {
+                if (myargv[i][strlen(myargv[i])-1]=='\n')
                 {
-                    char* programArg[128];
-                    
-                    programArg[0] = malloc(sizeof(char)*(strlen(pathvar[i])+strlen(myargv[0]))+1);
-                    if (myargv[0][strlen(myargv[0])-1]=='\n')
+                    myargv[i][strlen(myargv[i])-1]=0;
+                }
+                //redirection
+                if (strcmp(myargv[i],">")==0)
+                {
+                    if (myargc == (i+2))
                     {
-                        myargv[0][strlen(myargv[0])-1]=0;
-                    }
-                    
-                    strcpy(programArg[0],pathvar[i]);
-                    strcat(programArg[0],myargv[0]);
-                    int rc = fork();
-                    if (rc == 0)
-                    {
-                        //child
-                        
-                        
-                        i = 1;
-                        while (myargv[i]!=NULL)
+                        if (myargv[i+1][strlen(myargv[i+1])-1]=='\n')
                         {
-                        myargv[i] = strdup(myargv[i]);
-                        
-                            i++;
-                        
+                            myargv[i+1][strlen(myargv[i+1])-1]=0;
                         }
-                        programArg[i+1] = NULL;
-                        //before exec, change STDOUT
-                        //close(STDOUT_FILENO);
-                        //open("/Users/morgan/Desktop/file.stdout", O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
-                        //open("/tmp/file.stdout",, O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
-                        
-                        //new process
-                        
-                        int suc;
-                        suc = execv(programArg[0],programArg);
-                        if (suc>=0)
-                        {
-                            break;
-                        }
-                        printf("(only runs execv) failed!\n");
-                        exit(1);
-                        
-                    }
-                    else if (rc >0)
-                    {   //parent
-                        int cpid = (int) wait (NULL);
-                        //printf("parent: child pid was %d\n",cpid);
+                        outfilename = strdup(myargv[i+1]);
+                        errfilename = strdup(myargv[i+1]);
+                        programArg[i] = NULL;
+                        redir = 1;
+                        break;
                     }
                     else{
-                        fprintf(stderr, "fail\n");
+                        write(STDERR_FILENO, error_message, strlen(error_message));
                     }
-
+                }
+                
+                programArg[i] = (char*)malloc(128);
+                programArg[i] = strdup(myargv[i]);
+                
+                
+            }
+            
+            programArg[myargc]= NULL;
+            for(i = 0; i < pathNum ; i++)
+            {
+                
+                
+                programArg[0] = malloc(sizeof(char)*(strlen(pathvar[i])+strlen(myargv[0]))+1);
+                if (myargv[0][strlen(myargv[0])-1]=='\n')
+                {
+                    myargv[0][strlen(myargv[0])-1]=0;
+                }
+                
+                strcpy(programArg[0],pathvar[i]);
+                strcat(programArg[0],myargv[0]);
+                
+                
+                
+                int rc = fork();
+                if (rc == 0)
+                {
+                    //child
+                    if (redir)
+                    {
+                        //before exec, change STDOUT
+                        close(STDOUT_FILENO);
+                        //open("/Users/morgan/Desktop/file.stdout", O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
+                        outfile = open(strcat(outfilename,".out"),O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
+                        close(STDERR_FILENO);
+                        errfile = open(strcat(errfilename,".err"),O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
+                    }
+                    
+                    
+                    
+                    
+                    
+                    //new process
+                    
+                    int suc;
+                    suc = execv(programArg[0],programArg);
+                    if (suc>=0)
+                    {
+                        break;
+                    }
+                    //printf("(only runs execv) failed!\n");
+                    write(STDERR_FILENO, error_message, strlen(error_message));
+                    exit(1);
+                    
+                }
+                else if (rc >0)
+                {   //parent
+                    int cpid = (int) wait (NULL);
+                    //printf("parent: child pid was %d\n",cpid);
                 }
                 else{
-                    break;
+                    fprintf(stderr, "fail\n");
                 }
-            }
-            /*
-            int rc = fork();
-            printf("pid%d\n",rc);
-            //new process created, new virtual address space
-            //process is a copy of parent, different return code
-            if (rc == 0)
-            {
-                //child
-                char *myargv[4];
-                myargv[0] = strdup("/bin/ls");
-                myargv[1] = strdup("-l");
                 
-                myargv[2] = strdup("-a");
-                myargv[3] = NULL;   //important
-                
-                
-                
-                //before exec, change STDOUT
-                close(STDOUT_FILENO);
-                open("/Users/morgan/Desktop/file.stdout", O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
-                //open("/tmp/file.stdout",, O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
-                
-                //new process
-                
-                
-                execv(myargv[0],myargv);
-                printf("(only runs execv) failed!\n");
-                exit(1);
                 
             }
-            else if (rc >0)
-            {   //parent
-                int cpid = (int) wait (NULL);
-                printf("parent: child pid was %d\n",cpid);
-            }
-            else{
-                fprintf(stderr, "fail\n");
-            }
-         */
+            
         }
+        
+        
+        /*
+         int rc = fork();
+         printf("pid%d\n",rc);
+         //new process created, new virtual address space
+         //process is a copy of parent, different return code
+         if (rc == 0)
+         {
+         //child
+         char *myargv[4];
+         myargv[0] = strdup("/bin/ls");
+         myargv[1] = strdup("-l");
+         
+         myargv[2] = strdup("-a");
+         myargv[3] = NULL;   //important
+         
+         
+         
+         //before exec, change STDOUT
+         close(STDOUT_FILENO);
+         open("/Users/morgan/Desktop/file.stdout", O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
+         //open("/tmp/file.stdout",, O_CREAT|O_TRUNC|O_WRONLY, S_IRUSR|S_IWUSR);
+         
+         //new process
+         
+         
+         execv(myargv[0],myargv);
+         printf("(only runs execv) failed!\n");
+         exit(1);
+         
+         }
+         else if (rc >0)
+         {   //parent
+         int cpid = (int) wait (NULL);
+         printf("parent: child pid was %d\n",cpid);
+         }
+         else{
+         fprintf(stderr, "fail\n");
+         }
+         */
+        
     }
     
     return 0;
