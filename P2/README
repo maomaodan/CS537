@@ -1,0 +1,17 @@
+CS537 OS p2
+p2_a linux shell, whoosh.c compiled with makefile with flags -g -Wall -O
+
+p2_b xv6 scheduler.
+  syscall setpri 
+  syscall getpinfo
+  in sysproc.c
+  
+  modified 
+  userinit, fork, exit, scheduler
+  in proc.c
+  
+  added pstat.h
+  
+  added extern var in proc.h
+  modified struct proc in proc.h
+
