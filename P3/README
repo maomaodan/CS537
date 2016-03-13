@@ -1,0 +1,23 @@
+CS 537 p3
+xv6 modified by Wenxuan Mao
+
+part a null pointer dereference
+modified exec.c, changed sz to start loading code at PGSIZE
+
+changed syscall functions to restrict pointer passing before PGSIZE
+
+
+partb shared pages
+
+vm.c
+shmem access. maps pa created in init with va of the calling process.
+find if a page was mapped before, adds count of access
+
+shmem count. returns the count for number of access of a shared page
+
+proc.c
+finds the va for shared pages and increment on fork, decrement on exit.
+
+exec.c
+finds the va for shared pages and decrement on exec
+
