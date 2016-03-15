@@ -17,10 +17,8 @@
 int
 fetchint(struct proc *p, uint addr, int *ip)
 {
-  
-  if(addr >= p->sz && addr< (USERTOP-(p->shpage*PGSIZE)) )
+  if(addr >= p->sz || addr+4 > p->sz)
     return -1;
-  
   *ip = *(int*)(addr);
   return 0;
 }
@@ -33,24 +31,10 @@ fetchstr(struct proc *p, uint addr, char **pp)
 {
   char *s, *ep;
 
-  if(addr >= p->sz&& addr< (USERTOP-(p->shpage*PGSIZE)))
+  if(addr >= p->sz)
     return -1;
-
   *pp = (char*)addr;
-  if (addr<p->sz)
-
-    ep = (char*)p->sz;
-  else
-//    if (addr>USERTOP-PGSIZE)
-      ep = (char*)USERTOP;
-/*
-    else if (addr>USERTOP-2*PGSIZE)
-      ep = (char*)(USERTOP-PGSIZE);
-    else if (addr>USERTOP-3*PGSIZE)
-      ep = (char*)(USERTOP-2*PGSIZE);
-    else
-      ep = (char*)(USERTOP-3*PGSIZE);
-      */
+  ep = (char*)p->sz;
   for(s = *pp; s < ep; s++)
     if(*s == 0)
       return s - *pp;
@@ -61,7 +45,6 @@ fetchstr(struct proc *p, uint addr, char **pp)
 int
 argint(int n, int *ip)
 {
-
   return fetchint(proc, proc->tf->esp + 4 + 4*n, ip);
 }
 
@@ -75,19 +58,7 @@ argptr(int n, char **pp, int size)
   
   if(argint(n, &i) < 0)
     return -1;
-//cprintf("i: %d, sz: %d,size: %d, n: %d\n", i,proc->sz,size,n);
-  if(((uint)i >= proc->sz&&(uint)i<USERTOP-proc->shpage*PGSIZE) || (uint)i ==0)
-    return -1;
-  if(proc->pid!=1&&(uint)i<PGSIZE)
-    return -1;
-   
-  if((uint) i>= USERTOP -PGSIZE && (uint) i <USERTOP &&((uint) i +size)>=USERTOP)
-    return -1; 
-  if ((uint) i >=USERTOP - 2*PGSIZE&&(uint)i <USERTOP-PGSIZE && ((uint)i +size)>=USERTOP-PGSIZE)
-    return -1;
-  if ((uint) i >=USERTOP - 3*PGSIZE&&(uint)i <USERTOP-2*PGSIZE && ((uint)i +size)>=USERTOP-2*PGSIZE)
-    return -1;
-  if ((uint) i >=USERTOP - 4*PGSIZE&&(uint)i <USERTOP-3*PGSIZE && ((uint)i +size)>=USERTOP-3*PGSIZE)
+  if((uint)i >= proc->sz || (uint)i+size > proc->sz)
     return -1;
   *pp = (char*)i;
   return 0;
@@ -100,17 +71,10 @@ argptr(int n, char **pp, int size)
 int
 argstr(int n, char **pp)
 {
-int fetch;
-
   int addr;
   if(argint(n, &addr) < 0)
     return -1;
-  
-  if(proc->pid!=1&&addr<PGSIZE)
-    return -1;
-fetch = fetchstr(proc, addr, pp);
-//cprintf("argstr %d",fetch);
-  return fetch;
+  return fetchstr(proc, addr, pp);
 }
 
 // syscall function declarations moved to sysfunc.h so compiler
@@ -139,9 +103,6 @@ static int (*syscalls[])(void) = {
 [SYS_wait]    sys_wait,
 [SYS_write]   sys_write,
 [SYS_uptime]  sys_uptime,
-[SYS_shmem_access] sys_shmem_access,
-[SYS_shmem_count]  sys_shmem_count,
-
 };
 
 // Called on a syscall trap. Checks that the syscall number (passed via eax)
