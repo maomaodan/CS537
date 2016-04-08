@@ -1,0 +1,274 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		90E688FC1CAEDA32001DF599 /* crawler.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E688ED1CAEDA32001DF599 /* crawler.c */; };
+		90E688FD1CAEDA32001DF599 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E688F51CAEDA32001DF599 /* client.c */; };
+		90E688FE1CAEDA32001DF599 /* cs537.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E688F71CAEDA32001DF599 /* cs537.c */; };
+		90E688FF1CAEDA32001DF599 /* file_tester.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E688F91CAEDA32001DF599 /* file_tester.c */; };
+		90E689001CAEDA32001DF599 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 90E688FA1CAEDA32001DF599 /* Makefile */; };
+		90E689011CAEDA32001DF599 /* web_tester.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E688FB1CAEDA32001DF599 /* web_tester.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		90E688E11CAEDA02001DF599 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		90E688E31CAEDA02001DF599 /* crawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = crawler; path = /Users/morgan/Programming/Spring16/CS537/P4/linux/Xcode_testing/crawler/build/Debug/crawler; sourceTree = "<absolute>"; };
+		90E688ED1CAEDA32001DF599 /* crawler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crawler.c; path = crawler/crawler.c; sourceTree = "<group>"; };
+		90E688EE1CAEDA32001DF599 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = crawler/README.txt; sourceTree = "<group>"; };
+		90E688EF1CAEDA32001DF599 /* pagea */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pagea; path = crawler/pagea; sourceTree = "<group>"; };
+		90E688F01CAEDA32001DF599 /* pagea.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pagea.txt; path = crawler/pagea.txt; sourceTree = "<group>"; };
+		90E688F11CAEDA32001DF599 /* pageb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pageb; path = crawler/pageb; sourceTree = "<group>"; };
+		90E688F21CAEDA32001DF599 /* pagec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pagec; path = crawler/pagec; sourceTree = "<group>"; };
+		90E688F31CAEDA32001DF599 /* paged */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = paged; path = crawler/paged; sourceTree = "<group>"; };
+		90E688F41CAEDA32001DF599 /* pagee */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pagee; path = crawler/pagee; sourceTree = "<group>"; };
+		90E688F51CAEDA32001DF599 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = client.c; path = crawler/client.c; sourceTree = "<group>"; };
+		90E688F61CAEDA32001DF599 /* crawler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crawler.h; path = crawler/crawler.h; sourceTree = "<group>"; };
+		90E688F71CAEDA32001DF599 /* cs537.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cs537.c; path = crawler/cs537.c; sourceTree = "<group>"; };
+		90E688F81CAEDA32001DF599 /* cs537.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cs537.h; path = crawler/cs537.h; sourceTree = "<group>"; };
+		90E688F91CAEDA32001DF599 /* file_tester.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = file_tester.c; path = crawler/file_tester.c; sourceTree = "<group>"; };
+		90E688FA1CAEDA32001DF599 /* Makefile */ = {isa = PBXFileReference; explicitFileType = text.script.sh; fileEncoding = 4; name = Makefile; path = crawler/Makefile; sourceTree = "<group>"; };
+		90E688FB1CAEDA32001DF599 /* web_tester.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = web_tester.c; path = crawler/web_tester.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		90E688E01CAEDA02001DF599 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		90E688DA1CAEDA02001DF599 = {
+			isa = PBXGroup;
+			children = (
+				90E688ED1CAEDA32001DF599 /* crawler.c */,
+				90E688EE1CAEDA32001DF599 /* README.txt */,
+				90E688EF1CAEDA32001DF599 /* pagea */,
+				90E688F01CAEDA32001DF599 /* pagea.txt */,
+				90E688F11CAEDA32001DF599 /* pageb */,
+				90E688F21CAEDA32001DF599 /* pagec */,
+				90E688F31CAEDA32001DF599 /* paged */,
+				90E688F41CAEDA32001DF599 /* pagee */,
+				90E688F51CAEDA32001DF599 /* client.c */,
+				90E688F61CAEDA32001DF599 /* crawler.h */,
+				90E688F71CAEDA32001DF599 /* cs537.c */,
+				90E688F81CAEDA32001DF599 /* cs537.h */,
+				90E688F91CAEDA32001DF599 /* file_tester.c */,
+				90E688FA1CAEDA32001DF599 /* Makefile */,
+				90E688FB1CAEDA32001DF599 /* web_tester.c */,
+				90E688E51CAEDA02001DF599 /* crawler */,
+			);
+			sourceTree = "<group>";
+		};
+		90E688E51CAEDA02001DF599 /* crawler */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = crawler;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		90E688E21CAEDA02001DF599 /* crawler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90E688EA1CAEDA02001DF599 /* Build configuration list for PBXNativeTarget "crawler" */;
+			buildPhases = (
+				90E688DF1CAEDA02001DF599 /* Sources */,
+				90E688E01CAEDA02001DF599 /* Frameworks */,
+				90E688E11CAEDA02001DF599 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = crawler;
+			productName = crawler;
+			productReference = 90E688E31CAEDA02001DF599 /* crawler */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90E688DB1CAEDA02001DF599 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = MG;
+				TargetAttributes = {
+					90E688E21CAEDA02001DF599 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 90E688DE1CAEDA02001DF599 /* Build configuration list for PBXProject "crawler" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 90E688DA1CAEDA02001DF599;
+			productRefGroup = 90E688DA1CAEDA02001DF599;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90E688E21CAEDA02001DF599 /* crawler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		90E688DF1CAEDA02001DF599 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90E689001CAEDA32001DF599 /* Makefile in Sources */,
+				90E688FF1CAEDA32001DF599 /* file_tester.c in Sources */,
+				90E688FE1CAEDA32001DF599 /* cs537.c in Sources */,
+				90E688FD1CAEDA32001DF599 /* client.c in Sources */,
+				90E688FC1CAEDA32001DF599 /* crawler.c in Sources */,
+				90E689011CAEDA32001DF599 /* web_tester.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		90E688E81CAEDA02001DF599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		90E688E91CAEDA02001DF599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		90E688EB1CAEDA02001DF599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		90E688EC1CAEDA02001DF599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		90E688DE1CAEDA02001DF599 /* Build configuration list for PBXProject "crawler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90E688E81CAEDA02001DF599 /* Debug */,
+				90E688E91CAEDA02001DF599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90E688EA1CAEDA02001DF599 /* Build configuration list for PBXNativeTarget "crawler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90E688EB1CAEDA02001DF599 /* Debug */,
+				90E688EC1CAEDA02001DF599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90E688DB1CAEDA02001DF599 /* Project object */;
+}
