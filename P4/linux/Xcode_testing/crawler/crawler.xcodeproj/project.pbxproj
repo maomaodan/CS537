@@ -28,7 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		90E688E31CAEDA02001DF599 /* crawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = crawler; path = /Users/morgan/Programming/Spring16/CS537/P4/linux/Xcode_testing/crawler/build/Debug/crawler; sourceTree = "<absolute>"; };
+		906C8AAB1CB8485F001F649D /* crawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = crawler; path = /Users/morgan/Programming/Spring16/CS537/P4/linux/Xcode_testing/crawler/build/Debug/crawler; sourceTree = "<absolute>"; };
 		90E688ED1CAEDA32001DF599 /* crawler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crawler.c; path = crawler/crawler.c; sourceTree = "<group>"; };
 		90E688EE1CAEDA32001DF599 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = crawler/README.txt; sourceTree = "<group>"; };
 		90E688EF1CAEDA32001DF599 /* pagea */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pagea; path = crawler/pagea; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			);
 			name = crawler;
 			productName = crawler;
-			productReference = 90E688E31CAEDA02001DF599 /* crawler */;
+			productReference = 906C8AAB1CB8485F001F649D /* crawler */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */

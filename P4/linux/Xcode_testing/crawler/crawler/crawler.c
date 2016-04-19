@@ -35,7 +35,7 @@ struct node downQueue;
 int d_fillptr = 0;
 int d_use_ptr = 0;
 int d_count = 0;
-
+q
 int q_size;
 char** parseQueue;
 int p_fillptr = 0;
@@ -150,9 +150,10 @@ void *parser() //edge method pointer
         
         for (i = 0; i< sizeof(buf); i++)
         {
-            printf("end parser %lu, %s\n",sizeof(buf),buf);
-            curr = buf[i];
             
+            //printf("end parser %lu, %s\n",sizeof(buf),buf);
+            curr = buf[i];
+            printf("%c%c%c%c%c\n",curr,buf[i+1],buf[i+2],buf[i+3],buf[i+4]);
             if (curr == 'l' && buf[i+1] == 'i' && buf[i+2] == 'n' &&
                 buf[i+3] == 'k' && buf[i+4] == ':')
             {
@@ -165,6 +166,8 @@ void *parser() //edge method pointer
                 for (j = start;j < i; j++)
                 {
                     returnLink[start-j] = buf[j];
+                    
+                    printf("return link[start-j]: %c",returnLink[start-j]);
                 }
                 
             }
