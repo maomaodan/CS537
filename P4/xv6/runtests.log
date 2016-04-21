@@ -8,25 +8,7 @@ build xv6 using make
 **********************************************************************
 Trying to build project using make
 make
-gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
-		-M -MG kernel/sysproc.c -MF kernel/sysproc.d -MT kernel/sysproc.d -MT kernel/sysproc.o
-gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o kernel/sysproc.o kernel/sysproc.c
-ld  -m    elf_i386 -nostdlib --omagic \
-		--section-start=.text=0x100000 --entry=main --output=kernel/kernel \
-		kernel/multiboot.o kernel/data.o kernel/bio.o kernel/console.o kernel/exec.o kernel/file.o kernel/fs.o kernel/ide.o kernel/ioapic.o kernel/kalloc.o kernel/kbd.o kernel/lapic.o kernel/main.o kernel/mp.o kernel/picirq.o kernel/pipe.o kernel/proc.o kernel/spinlock.o kernel/string.o kernel/swtch.o kernel/syscall.o kernel/sysfile.o kernel/sysproc.o kernel/timer.o kernel/trapasm.o kernel/trap.o kernel/uart.o kernel/vectors.o kernel/vm.o \
-		-b binary initcode bootother
-dd if=/dev/zero of=xv6.img count=10000
-10000+0 records in
-10000+0 records out
-5120000 bytes (5.1 MB) copied, 0.0116243 s, 440 MB/s
-dd if=kernel/bootblock of=xv6.img conv=notrunc
-1+0 records in
-1+0 records out
-512 bytes (512 B) copied, 6.271e-05 s, 8.2 MB/s
-dd if=kernel/kernel of=xv6.img seek=1 conv=notrunc
-255+1 records in
-255+1 records out
-130822 bytes (131 kB) copied, 0.000296283 s, 442 MB/s
+make: Nothing to be done for `all'.
 
 
 test build PASSED
@@ -50,23 +32,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 451 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -82,7 +64,9 @@ init: starting sh
 $ tester
 tester
 TEST PASSED
-
+zombie!
+cpu1: panic: kfree
+ 1029de 107cce 1
 
 test clone PASSED (9 of 9)
  (clone and verify that address space is shared)
@@ -105,23 +89,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -160,23 +144,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 453 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -220,23 +204,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -252,7 +236,7 @@ init: starting sh
 $ tester
 tester
 TEST PASSED
-$ 
+
 
 test thread2 PASSED (7 of 7)
  (memory leaks from thread library?)
@@ -275,23 +259,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 451 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -307,7 +291,6 @@ init: starting sh
 $ tester
 tester
 TEST PASSED
-zombie!
 
 
 test join3 PASSED (3 of 3)
@@ -331,23 +314,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 453 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -363,7 +346,7 @@ init: starting sh
 $ tester
 tester
 TEST PASSED
-
+$ 
 
 test join2 PASSED (6 of 6)
  (join argument checking)
@@ -386,23 +369,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -441,23 +424,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -496,23 +479,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -529,7 +512,6 @@ $ tester
 tester
 TEST PASSED
 zombie!
-
 
 test stack PASSED (8 of 8)
  (set up stack correctly (and without extra items))
@@ -552,23 +534,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 453 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -583,13 +565,11 @@ cpu0: starting
 init: starting sh
 $ tester
 tester
-user/tester.c: 79 assert failed ((unsigned int)sbrk(0) == size)
-TEST FAILED
+TEST PASSED
 
 
-test size FAILED (0 of 7)
+test size PASSED (7 of 7)
  (check that address space size is updated in threads)
- tester failed
 
 starting multi
 
@@ -609,23 +589,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 454 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -664,23 +644,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -720,23 +700,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -775,23 +755,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -807,7 +787,7 @@ init: starting sh
 $ tester
 tester
 TEST PASSED
-$ 
+
 
 test thread PASSED (10 of 10)
  (thread user library functions)
@@ -830,23 +810,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-usertests
-cat
-ls
-zombie
-sh
-init
-ln
-grep
-wc
-rm
-tester
-README
-stressfs
-kill
-forktest
-mkdir
 echo
+kill
+ln
+stressfs
+usertests
+ls
+init
+mkdir
+tester
+grep
+sh
+forktest
+README
+cat
+rm
+zombie
+wc
 balloc: first 452 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -900,9 +880,8 @@ test clone2 PASSED (6 of 6)
 test stack PASSED (8 of 8)
  (set up stack correctly (and without extra items))
 
-test size FAILED (0 of 7)
+test size PASSED (7 of 7)
  (check that address space size is updated in threads)
- tester failed
 
 test multi PASSED (8 of 8)
  (multiple threads with some depth of function calls)
@@ -919,6 +898,6 @@ test thread PASSED (10 of 10)
 test locks PASSED (8 of 8)
  (test lock correctness)
 
-Passed 14 of 16 tests.
-Overall 14 of 16
-Points 90 of 100
+Passed 15 of 16 tests.
+Overall 15 of 16
+Points 97 of 100

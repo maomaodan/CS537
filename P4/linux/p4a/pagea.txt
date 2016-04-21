@@ -1,4 +1,4 @@
 Welcome!
 
 link:pageb
-link:pagec
+li///nk:pagec

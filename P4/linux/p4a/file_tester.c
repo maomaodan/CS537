@@ -47,7 +47,7 @@ void edge(char *from, char *to) {
 
 int main(int argc, char *argv[]) {
   assert(argc == 2);
-  int rc = crawl(argv[1], 1, 1, 1, fetch, edge);
+  int rc = crawl(argv[1], 5, 4, 15, fetch, edge); //(char *start_url,int download_workers,int parse_workers,int queue_size,char * (*_fetch_fn)(char *url),void (*_edge_fn)(char *from, char *to))
   assert(rc == 0);
   return 0;
 }

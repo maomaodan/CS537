@@ -107,7 +107,7 @@ int
 growproc(int n)
 {
   uint sz;
-  
+  struct proc *p;
   sz = proc->sz;
   if(n > 0){
     if((sz = allocuvm(proc->pgdir, sz, sz + n)) == 0)
@@ -117,6 +117,13 @@ growproc(int n)
       return -1;
   }
   proc->sz = sz;
+  //search for child threads and update size of all of them
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->parent==proc && p->pgdir == proc->pgdir)
+      p->sz = proc->sz;
+  }
+  release(&ptable.lock);
   switchuvm(proc);
   return 0;
 }
@@ -232,11 +239,11 @@ int join(void **stack)
   struct proc *p;
   int havekids, pid;
   //cprintf("stack proc mod %d\n",((uint)(stack)+4)%4096);
-  if(((uint)(stack)+4)%4096!=0)
-  {
-   cprintf("not aligned\n");
-    return -1;
-    }
+  //if(((uint)(stack)+4)%4096!=0)
+//  {
+  // cprintf("not aligned\n");
+ //   return -1;
+  //  }
   acquire(&ptable.lock);
   for(;;){
     // Scan through table looking for zombie children.
